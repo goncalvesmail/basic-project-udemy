@@ -11,8 +11,11 @@ export class RecipeDetailComponent implements OnInit {
 
   @Input() selectedRecipe: Recipe;
 
-  constructor() { }
+  constructor(private recipeService: RecipeService) { }
 
   ngOnInit() { }
 
+  onAddToShoppingList() {
+    this.recipeService.addIngredientsToShoppingList(this.selectedRecipe.ingredients);
+  }
 }

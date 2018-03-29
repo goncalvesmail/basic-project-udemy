@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Ingredient } from '../../../models/ingredient';
 import { ShoppingListService } from '../../../services/shopping-list.service';
 
@@ -8,7 +8,6 @@ import { ShoppingListService } from '../../../services/shopping-list.service';
   styleUrls: ['./shopping-list-edit.component.css']
 })
 export class ShoppingListEditComponent implements OnInit {
-
   @ViewChild('nameInput') nameInputElement: ElementRef;
   @ViewChild('amountInput') amountInputElement: ElementRef;
 
@@ -18,7 +17,7 @@ export class ShoppingListEditComponent implements OnInit {
   }
 
   onSubmit() {
-    this.slService.addIngredients(
+    this.slService.addIngredient(
       new Ingredient(
         this.nameInputElement.nativeElement.value,
         this.amountInputElement.nativeElement.value));
