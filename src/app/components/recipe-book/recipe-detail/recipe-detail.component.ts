@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../../../models/recipe';
 import { RecipeService } from '../../../services/recipe.service';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -11,18 +11,18 @@ import { tick } from '@angular/core/testing';
 })
 export class RecipeDetailComponent implements OnInit {
 
-  @Input() selectedRecipe: Recipe;
+  selectedRecipe: Recipe;
 
   constructor(private recipeService: RecipeService,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    const id: number = +this.route.snapshot.params['id'];
-    this.selectedRecipe = this.recipeService.getRecipe(id);
+    const recipeName: string = this.route.snapshot.params['name'];
+    this.selectedRecipe = this.recipeService.getRecipe(recipeName);
 
     this.route.params.subscribe(
       (param: Params) => {
-        this.selectedRecipe = this.recipeService.getRecipe(+param['id']);
+        this.selectedRecipe = this.recipeService.getRecipe(param['name']);
       }
     );
   }

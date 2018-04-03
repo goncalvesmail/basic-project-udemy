@@ -32,8 +32,12 @@ export class RecipeService {
     return this.recipes.slice();
   }
 
-  getRecipe(id: number) {
-    return this.recipes[id];
+  getRecipe(name: string): Recipe {
+    for(let receita of this.recipes) {
+      if(receita.name === name) {
+        return receita;
+      }
+    }
   }
 
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
