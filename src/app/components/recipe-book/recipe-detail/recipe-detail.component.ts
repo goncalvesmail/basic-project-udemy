@@ -12,17 +12,20 @@ import { tick } from '@angular/core/testing';
 export class RecipeDetailComponent implements OnInit {
 
   selectedRecipe: Recipe;
+  selectedRecipeId: number;
 
   constructor(private recipeService: RecipeService,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    const recipeName: string = this.route.snapshot.params['name'];
-    this.selectedRecipe = this.recipeService.getRecipe(recipeName);
+    this.selectedRecipeId = +this.route.snapshot.params['id'];
+    this.selectedRecipe = this.recipeService
+      .getRecipeById(this.selectedRecipeId);
 
     this.route.params.subscribe(
       (param: Params) => {
-        this.selectedRecipe = this.recipeService.getRecipe(param['name']);
+        this.selectedRecipeId = +param['id'];
+        this.selectedRecipe = this.recipeService.getRecipeById(this.selectedRecipeId);
       }
     );
   }
