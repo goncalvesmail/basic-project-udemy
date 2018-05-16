@@ -16,7 +16,7 @@ export class RecipeListComponent implements OnInit {
   ngOnInit() {
     this.recipeService.recipeChanged.subscribe(
       (recipes: Recipe[]) => {
-        console.log('atualiza')
+        console.log(recipes);
         this.recipes = recipes;
       }
     )
